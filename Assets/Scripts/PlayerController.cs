@@ -27,6 +27,9 @@ public class PlayerController : MonoState<PlayerController>
     [Range(0.1F, 1.0F)]
     float fireRate = 0.3F;
 
+    [SerializeField]
+    Animator[] wheelAnimators;
+
     //Es para hacer trabajo con fisicas
     Rigidbody2D _rb;
 
@@ -75,6 +78,13 @@ public class PlayerController : MonoState<PlayerController>
             animator.SetFloat("Speed", _direction.sqrMagnitude);
         }
 
+        if (wheelAnimators.Length > 0)
+        {
+            foreach (Animator wheelAnimator in wheelAnimators)
+            {
+                wheelAnimator.SetFloat("Speed", _direction.sqrMagnitude);
+            }
+        }
         _rb.MovePosition(_rb.position + _direction * speed * Time.fixedDeltaTime);
         HandleRotaion();
     }

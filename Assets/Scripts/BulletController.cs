@@ -26,4 +26,8 @@ public class BulletController : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
