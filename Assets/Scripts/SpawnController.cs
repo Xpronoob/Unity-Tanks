@@ -7,17 +7,27 @@ public class SpawnController : MonoBehaviour
 
     public GameObject enemyPrefab;
     [SerializeField]
-    public float spawnInterval = 3.0f;
+    public float spawnInterval = 15.0f;
     [SerializeField]
     public float spawnRadius = 30.0f;
 
-    private float nextSpawnTime = 0;
+    private float nextSpawnTime = 15.0f;
+    private void Start()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            SpawnEnemy();
+        }
+    }
 
     void Update()
     {
         if (Time.time >= nextSpawnTime)
         {
-            SpawnEnemy();
+            for (int i = 0; i < 3; i++)
+            {
+                SpawnEnemy();
+            }
             nextSpawnTime = Time.time + spawnInterval;
         }
     }
