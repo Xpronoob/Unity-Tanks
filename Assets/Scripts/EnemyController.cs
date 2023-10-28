@@ -37,6 +37,9 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
+            GameController gameManager = FindFirstObjectByType<GameController>();
+            gameManager.IncrementKillCount();
+
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
