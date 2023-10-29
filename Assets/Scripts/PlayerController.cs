@@ -41,6 +41,8 @@ public class PlayerController : MonoState<PlayerController>
 
     float _fireTimer;
 
+    private bool _gameIsOver = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -122,5 +124,17 @@ public class PlayerController : MonoState<PlayerController>
         float angle = Mathf.Atan2(_mousePosition.y - barrel.position.y,
             _mousePosition.x - barrel.position.x) * Mathf.Rad2Deg - 90.0F;
         barrel.rotation = Quaternion.Euler(new Vector3(0.0F, 0.0F, angle));
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyTank") && !_gameIsOver)
+        {
+            Debug.Log("Game Over");
+
+            _gameIsOver = true;
+
+            Time.timeScale = 0F;
+        }
     }
 }
