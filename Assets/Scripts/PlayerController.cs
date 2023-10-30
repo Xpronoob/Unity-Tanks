@@ -135,6 +135,8 @@ public class PlayerController : MonoState<PlayerController>
             _gameIsOver = true;
 
             Time.timeScale = 0F;
+
+            Destroy(gameObject);
         }
     }
 }
